@@ -1,0 +1,102 @@
+**Output the number of rows in the pharmacy_sales table. **
+
+pharmacy_sales Table:
+Column Name	Type
+product_id	integer
+units_sold	integer
+total_sales	decimal
+cogs	decimal
+manufacturer	varchar
+drug	varchar
+pharmacy_sales Sample Input:
+product_id	units_sold	total_sales	cogs	manufacturer	drug
+9	37410	293452.54	208876.01	Eli Lilly	Zyprexa
+34	94698	600997.19	521182.16	AstraZeneca	Surmontil
+61	77023	500101.61	419174.97	Biogen	Varicose Relief
+136	144814	1084258	1006447.73	Biogen	Burkhart
+...	...	...	...	...	....
+
+Solution:
+
+select count(*) from pharmacy_sales;
+
+
+
+Imagine you are a Data Analyst working at CVS Pharmacy, and you had access to pharmacy sales data.
+
+Output the total number of drugs manufactured by Pfizer, and output the total sales for all the Pfizer drugs.
+
+pharmacy_sales Table:
+Column Name	Type
+product_id	integer
+units_sold	integer
+total_sales	decimal
+cogs	decimal
+manufacturer	varchar
+drug	varchar
+pharmacy_sales Sample Input:
+product_id	units_sold	total_sales	cogs	manufacturer	drug
+9	37410	293452.54	208876.01	Eli Lilly	Zyprexa
+34	94698	600997.19	521182.16	AstraZeneca	Surmontil
+61	77023	500101.61	419174.97	Biogen	Varicose Relief
+136	144814	1084258	1006447.73	Biogen	Burkhart
+...	...	...	...	...	....
+
+
+Solution:
+
+select count(drug),sum(total_sales) from pharmacy_sales 
+where manufacturer='Pfizer';
+
+
+Write a SQL query using AVG to find the average open price for Google stock (which has a stock ticker symbol of 'GOOG').
+
+Sample stock_prices Input:
+date	ticker	open	high	low	close
+01/01/2020 00:00:00	GOOG	67.08	75.16	67.08	71.71
+01/01/2020 00:00:00	NFLX	326.10	359.85	321.20	345.09
+01/01/2020 00:00:00	AAPL	74.06	81.96	73.19	77.38
+01/01/2020 00:00:00	AMZN	93.75	102.79	90.77	100.44
+01/01/2020 00:00:00	MSFT	158.78	174.05	156.51	170.23
+
+
+Solution:
+
+select avg(open) from stock_prices
+where ticker='GOOG';
+
+
+
+Use SQL's MIN command in this practice exercise, to find the lowest Microsoft stock (MSFT) ever opened at.
+
+Sample stock_prices Input:
+date	ticker	open	high	low	close
+01/01/2020 00:00:00	GOOG	67.08	75.16	67.08	71.71
+01/01/2020 00:00:00	NFLX	326.10	359.85	321.20	345.09
+01/01/2020 00:00:00	AAPL	74.06	81.96	73.19	77.38
+01/01/2020 00:00:00	AMZN	93.75	102.79	90.77	100.44
+01/01/2020 00:00:00	MSFT	158.78	174.05	156.51	170.23
+
+
+Solution:
+
+select min(open) from stock_prices
+where ticker='MSFT'
+
+
+
+Use SQL's MAX command in this practice exercise, to find the highest Netflix stock (NFLX) ever opened at.
+
+Sample stock_prices Input:
+date	ticker	open	high	low	close
+01/01/2020 00:00:00	GOOG	67.08	75.16	67.08	71.71
+01/01/2020 00:00:00	NFLX	326.10	359.85	321.20	345.09
+01/01/2020 00:00:00	AAPL	74.06	81.96	73.19	77.38
+01/01/2020 00:00:00	AMZN	93.75	102.79	90.77	100.44
+01/01/2020 00:00:00	MSFT	158.78	174.05	156.51	170.23
+
+
+Solution:
+
+select max(open) from stock_prices
+where ticker='NFLX' 
