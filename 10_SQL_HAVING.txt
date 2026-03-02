@@ -1,0 +1,80 @@
+Use SQL's HAVING & MIN commands to find all FAANG stocks whose open share price was always greater than $100.
+
+stock_prices Example Input:
+date	ticker	open	high	low	close
+01/31/2020 00:00:00	GOOG	67.08	75.16	67.08	71.71
+01/31/2020 00:00:00	META	206.75	224.20	201.06	201.91
+01/31/2020 00:00:00	MSFT	158.78	174.05	156.51	170.23
+01/31/2020 00:00:00	AMZN	93.75	102.79	90.77	100.44
+01/31/2020 00:00:00	NFLX	326.10	359.85	321.20	345.09
+
+Solution:
+
+select ticker,min(open) as minimum from stock_prices
+group by ticker
+having min(open)>100;
+ 
+
+Given a table of candidates and their technical skills, list the candidate IDs of candidates who have more than 2 technical skills.
+
+Assumption:
+
+There are no duplicates in the candidates table.
+candidates Table:
+Column Name	Type
+candidate_id	integer
+skill	varchar
+candidates Example Input:
+candidate_id	skill
+123	Python
+123	Tableau
+123	PostgreSQL
+234	PowerBI
+234	SQL Server
+345	Python
+345	Tableau
+
+
+Solution:
+
+SELECT candidate_id,count(skill) from candidates
+group by candidate_id
+having count(skill)>2;
+
+
+
+
+
+
+Given a table of candidates and their skills, you're tasked with finding the candidates best suited for an open Data Science job. You want to find candidates who are proficient in Python, Tableau, and PostgreSQL.
+
+Write a query to list the candidates who possess all of the required skills for the job. Sort the output by candidate ID in ascending order.
+
+Assumption:
+
+There are no duplicates in the candidates table.
+candidates Table:
+Column Name	Type
+candidate_id	integer
+skill	varchar
+candidates Example Input:
+candidate_id	skill
+123	Python
+123	Tableau
+123	PostgreSQL
+234	R
+234	PowerBI
+234	SQL Server
+345	Python
+345	Tableau
+
+
+
+
+Solution:
+
+SELECT candidate_id,count(skill) from candidates
+where skill in ('Python', 'Tableau','PostgreSQL')
+group by candidate_id
+having count(skill)=3
+order by candidate_id
