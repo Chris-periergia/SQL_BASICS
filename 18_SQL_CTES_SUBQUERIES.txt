@@ -1,0 +1,30 @@
+As the lead data analyst for a prominent music event management company, you have been entrusted with a dataset containing concert revenue and detailed information about various artists.
+
+Your mission is to unlock valuable insights by analyzing the concert revenue data and identifying the top revenue-generating artists within each music genre.
+
+Write a query to rank the artists within each genre based on their revenue per member and extract the top revenue-generating artist from each genre. Display the output of the artist name, genre, concert revenue, number of members, and revenue per band member, sorted by the highest revenue per member within each genre.
+
+concerts Schema:
+Column Name	Type	Description
+artist_id	integer	A unique identifier for each artist or band performing in the concert.
+artist_name	varchar(100)	The name of the artist or band performing in the concert.
+genre	varchar(50)	The music genre associated with the concert.
+concert_revenue	integer	The total revenue generated from the concert.
+year_of_formation	integer	The year that the artist or band was formed.
+country	varchar(50)	The country of origin or residence of the artist or band.
+number_of_members	integer	The number of members in the band.
+album_released	integer	The total number of albums released by the artist or band.
+label	varchar(100)	The record label or music company associated with the artist or band.
+
+
+
+Solution:
+
+select c1.artist_name,c1.genre,c1.concert_revenue,c1.number_of_members,
+c1.concert_revenue/c1.number_of_members as RPM
+from concerts as c1
+where c1.concert_revenue/c1.number_of_members=(
+select max(c2.concert_revenue/c2.number_of_members)
+from concerts c2 where c1.genre=c2.genre
+)
+order by RPM desc
